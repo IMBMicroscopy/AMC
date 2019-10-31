@@ -1,7 +1,7 @@
 #include <avr/wdt.h>  //watchdog library
 #include <avr/eeprom.h>  //read/write to internal EEPROM chip
 
-String softVer = "RF_Relay_v1_2 18/2/16";  //Software version 
+String softVer = "AMC_1/11/19";  //Software version 
 String serialNumber = "0013";
 
 // define the different operating modes of the relay unit
