@@ -2,7 +2,7 @@
 #include <avr/eeprom.h>  //read/write to internal EEPROM chip
 
 String softVer = "AMC_1/11/19";  //Software version 
-String serialNumber = "0013";  //Hardware Serial number
+String serialNumber = "0012";  //Hardware Serial number
 
 // define the different operating modes of the relay unit
 #define startMode     0
@@ -19,12 +19,12 @@ char* modeNames[] = {"start", "cool", "zero", "min", "max", "logOff", "off"};
 long baudRate = 9600;  //USB port Baud Rate
 
 //Declare LED and Relay PINS
-const byte lampPin = 10;  // Mercury Lamp Relay Pin, Leonardo = 7, Beetle = 
-const byte powerPin = 11; // Powerboard Relay Pin, Leonardo = 8, Beetle = 
-const byte beepPin = 9; // Alarm on Logoff Pin, leonardo = 10, Uno = 3, Beetle = 
-const byte lampLED = 14; // Mercury Lamp On indicator LED, Leonardo = 14, Beetle = 
-const byte powerLED = 15; // Powerboard On indicator LED, Leonardo = 14, Beetle = 
-const byte coolLED = 16; // Cooling Mode indicator LED, Leonardo = 9, Beetle = 
+const byte lampPin = 10;  // Mercury Lamp Relay Pin, Leonardo = 7, Beetle = 10
+const byte powerPin = 11; // Powerboard Relay Pin, Leonardo = 8, Beetle = 11
+const byte beepPin = 9; // Alarm on Logoff Pin, leonardo = 10, Uno = 3, Beetle = 9
+const byte lampLED = A0; // Mercury Lamp On indicator LED, Leonardo = 14, Beetle = A0
+const byte powerLED = A1; // Powerboard On indicator LED, Leonardo = 15, Beetle = A1
+const byte coolLED = A2; // Cooling Mode indicator LED, Leonardo = 16, Beetle = A2
 
 //  Default Timer values (unit = seconds), modify for each device as required via terminal commands
 long coolTime = 300;   // the time the hot lamp stays in cooling mode, preventing lamp start (powerboard may be turned on/off though) (cooling LED on)
