@@ -134,7 +134,8 @@ void gotoMaxRunMode() {
 void gotoLogOffMode() {
   //if the flags are set correctly goto logOffMode
   //if the user tries to turn off the lamp during minMode, wait til minMode is over then goto logOffMode
-  if(lampUSBFlag == false && lampPinFlag == true && newLampCommand == true) logOffFlag = true;  
+  if(lampUSBFlag == false && lampPinFlag == true && newLampCommand == true) logOffFlag = true;
+  if((lampUSBFlag == true && lampPinFlag == true && newLampCommand == true) || (powerUSBFlag == true && lampPinFlag == true && newLampCommand == true)) logOffFlag = false;  //new line added on 25/11/2020 to enable a user to toggle the lamp on/off repeatedly during minMode, without this line, the user could only send a lampoff signal once, and be unable to revert  
   if(runTime >= minTime) {
     if(logOffFlag == true) {
       if(updateFlag) Serial.println(F("goto logOffMode"));

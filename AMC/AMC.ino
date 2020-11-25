@@ -104,7 +104,7 @@ help - list the serial commands and their meanings
 
 
 
-James Springfield, 12/2/2016
+James Springfield, 25/11/2020
 
 please see the included excel spreadsheet for more information
 
@@ -123,10 +123,10 @@ Installation instructions
 
 	You may need to install the latest version of the code to the Scope Relay Unit:
 	
-	open the Arduino programming language and open Scope_relay_v2.ino
-        Select Tools menu/Board/Arduino Leonardo
-        Select Tools menu/Port/(and the arduino leonardo device or a tty.usb.modem)
-	Press the button on the back of the relay unit then press the upload button in the Arduino software to upload the code via usb cable.  (talk to john srnka in the workshop if you have trouble)
+	open the Arduino programming language and open AMC.ino
+        Select Tools menu/Board/Arduino Leonardo or you may need to install a different device driver such as Freetronics LeoStick or other device
+        Select Tools menu/Port/(and the arduino leonardo (leostick etc) device or a tty.usb.modem)
+	      Press and hold the button on the back of the relay unit then press the upload button in the Arduino software, release the relay button when the software says "uploading" to upload the code via usb cable.  (talk to john srnka in the workshop if you have trouble)
         Wait until the cooling light turns on
 
 	Now press the looking glass "Serial Monitor" button to bring up a communications terminal with the relay unit (set baud rate = 9600, Carriage Return)
