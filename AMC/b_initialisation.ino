@@ -2,7 +2,7 @@
 #include <avr/eeprom.h>  //read/write to internal EEPROM chip
 
 String softVer = "AMC_1/11/19";  //Software version 
-String serialNumber = "0012";  //Hardware Serial number
+String serialNumber = "008";  //Hardware Serial number
 
 // define the different operating modes of the relay unit
 #define startMode     0
