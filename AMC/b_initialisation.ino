@@ -1,8 +1,48 @@
 #include <avr/wdt.h>  //watchdog library
 #include <avr/eeprom.h>  //read/write to internal EEPROM chip
 
+//adjust these values for each unit
 String softVer = "AMC_1/11/19";  //Software version 
-String serialNumber = "008";  //Hardware Serial number
+String serialNumber = "008";     //Hardware Serial number
+#define board           1        // 0=Uno, 1=Leonardo1 (S/N 008), 2 = Leonardo2, 3=Beetle
+
+//Declare LED and Relay PINS
+#if board == 0  //Uno
+  const byte lampPin = 7;  // Mercury Lamp Relay Pin
+  const byte powerPin = 8; // Powerboard Relay Pin
+  const byte beepPin = 3; // Alarm on Logoff Pin
+  const byte lampLED = 14; // Mercury Lamp On indicator LED
+  const byte powerLED = 15; // Powerboard On indicator LED
+  const byte coolLED = 16; // Cooling Mode indicator LED 
+  String boardType = "Uno";
+  
+#elif board == 1  //Leonardo type 1 
+  const byte lampPin = 7;  // Mercury Lamp Relay Pin
+  const byte powerPin = 8; // Powerboard Relay Pin
+  const byte beepPin = 3; // Alarm on Logoff Pin
+  const byte lampLED = 12; // Mercury Lamp On indicator LED
+  const byte powerLED = 11; // Powerboard On indicator LED
+  const byte coolLED = 9; // Cooling Mode indicator LED   
+  String boardType = "Leonardo type 1";
+  
+  #elif board == 2  //Leonardo type 2
+  const byte lampPin = 7;  // Mercury Lamp Relay Pin
+  const byte powerPin = 8; // Powerboard Relay Pin
+  const byte beepPin = 10; // Alarm on Logoff Pin
+  const byte lampLED = 14; // Mercury Lamp On indicator LED
+  const byte powerLED = 15; // Powerboard On indicator LED
+  const byte coolLED = 16; // Cooling Mode indicator LED   
+  String boardType = "Leonardo type 2";
+  
+#elif board == 3  //Beetle
+  const byte lampPin = 10;  // Mercury Lamp Relay Pin
+  const byte powerPin = 11; // Powerboard Relay Pin
+  const byte beepPin = 9; // Alarm on Logoff Pin
+  const byte lampLED = A0; // Mercury Lamp On indicator LED
+  const byte powerLED = A1; // Powerboard On indicator LED
+  const byte coolLED = A2; // Cooling Mode indicator LED
+  String boardType = "Beetle";
+#endif
 
 // define the different operating modes of the relay unit
 #define startMode     0
@@ -17,14 +57,6 @@ char* modeNames[] = {"start", "cool", "zero", "min", "max", "logOff", "off"};
     
 //Baud Rate for USB communications
 long baudRate = 9600;  //USB port Baud Rate
-
-//Declare LED and Relay PINS
-const byte lampPin = 10;  // Mercury Lamp Relay Pin, Leonardo = 7, Beetle = 10
-const byte powerPin = 11; // Powerboard Relay Pin, Leonardo = 8, Beetle = 11
-const byte beepPin = 9; // Alarm on Logoff Pin, leonardo = 10, Uno = 3, Beetle = 9
-const byte lampLED = A0; // Mercury Lamp On indicator LED, Leonardo = 14, Beetle = A0
-const byte powerLED = A1; // Powerboard On indicator LED, Leonardo = 15, Beetle = A1
-const byte coolLED = A2; // Cooling Mode indicator LED, Leonardo = 16, Beetle = A2
 
 //  Default Timer values (unit = seconds), modify for each device as required via terminal commands
 long coolTime = 300;   // the time the hot lamp stays in cooling mode, preventing lamp start (powerboard may be turned on/off though) (cooling LED on)

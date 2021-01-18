@@ -117,6 +117,10 @@ void gotoMinRunMode() {
   //if the power or lamp is turned on and the lamp was off goto minRunMode
   if((lampUSBFlag == true && lampPinFlag == false && newLampCommand == true) || (powerUSBFlag == true && lampPinFlag == false && newPowerCommand == true)) {  
     if(updateFlag) Serial.println(F("goto minMode"));
+    logOffFlag = false;
+    if(logOffFlag == false && newCommand == true) {
+      if(updateFlag) Serial.println(F("minMode: set logOffFlag = false"));
+    }
     relStartTime = time();  //  reset the runTime to zero
     state = minMode;  // goto minRunMode
   }
@@ -135,7 +139,9 @@ void gotoLogOffMode() {
   //if the flags are set correctly goto logOffMode
   //if the user tries to turn off the lamp during minMode, wait til minMode is over then goto logOffMode
   if(lampUSBFlag == false && lampPinFlag == true && newLampCommand == true) logOffFlag = true;
-  if((lampUSBFlag == true && lampPinFlag == true && newLampCommand == true) || (powerUSBFlag == true && lampPinFlag == true && newLampCommand == true)) logOffFlag = false;  //new line added on 25/11/2020 to enable a user to toggle the lamp on/off repeatedly during minMode, without this line, the user could only send a lampoff signal once, and be unable to revert  
+  if(logOffFlag == true && newCommand == true) {
+    if(updateFlag) Serial.println(F("minMode: set logOffFlag = true"));
+  }
   if(runTime >= minTime) {
     if(logOffFlag == true) {
       if(updateFlag) Serial.println(F("goto logOffMode"));

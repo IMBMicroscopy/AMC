@@ -127,6 +127,10 @@ void setFlags(){
       newCommand = true;
       delay(1);
     }
+    else if(inputString == "getPins") {
+      //print pin values
+      Serial.println("Board=" + boardType + ": " + "lampPin=" + String(lampPin) + ", " + "powerPin=" + String(powerPin) + ", " + "beepPin=" + String(beepPin) + ", " + "lampLED=" + String(lampLED) + ", " + "powerLED=" + String(powerLED) + ", " + "coolLED=" + String(coolLED));
+    }
     else {
       newCommand = false;
       newPowerCommand = false;
@@ -207,6 +211,7 @@ void printCommands() {
   Serial.println(F("getRam = get currently available free RAM value"));
   Serial.println(F("getVer = get installed software version"));
   Serial.println(F("getSer = get Serial Number of hardware"));
+  Serial.println(F("getPins = get list of pinouts on board"));
   Serial.println(F("cpuReset = resets the hardware for a full restart and applies any timer changes etc"));
   Serial.println(F("restart = send unit into startup mode, but doesnt perform a hardware reset"));
   Serial.println(F("beepOn and beepOff = test the beeper volume and Cool LED flash length"));
