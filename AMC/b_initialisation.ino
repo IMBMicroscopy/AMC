@@ -3,8 +3,8 @@
 
 //adjust these values for each unit
 String softVer = "AMC_1/11/19";  //Software version 
-String serialNumber = "008";     //Hardware Serial number
-#define board           1        // 0=Uno, 1=Leonardo1 (S/N 008), 2 = Leonardo2, 3=Beetle
+String serialNumber = "005";     //Hardware Serial number
+#define board           4        // 0=Uno, 1=Leonardo1 (S/N 008), 2 = Leonardo2, 3=Beetle, 4=Uno S/N 005
 
 //Declare LED and Relay PINS
 #if board == 0  //Uno
@@ -42,6 +42,16 @@ String serialNumber = "008";     //Hardware Serial number
   const byte powerLED = A1; // Powerboard On indicator LED
   const byte coolLED = A2; // Cooling Mode indicator LED
   String boardType = "Beetle";
+
+#elif board == 4  //Uno S/N 005
+  const byte lampPin = 7;  // Mercury Lamp Relay Pin
+  const byte powerPin = 8; // Powerboard Relay Pin
+  const byte beepPin = 3; // Alarm on Logoff Pin
+  const byte lampLED = 12; // Mercury Lamp On indicator LED
+  const byte powerLED = 11; // Powerboard On indicator LED
+  const byte coolLED = 9; // Cooling Mode indicator LED
+  String boardType = "Uno S/N 005";
+  
 #endif
 
 // define the different operating modes of the relay unit
