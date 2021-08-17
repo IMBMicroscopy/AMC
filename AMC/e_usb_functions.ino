@@ -104,13 +104,18 @@ void setFlags(){
       newCommand = true;
       delay(1);
     }
+    else if(inputString == ("getLampMins")) {
+      readEEPROM();
+      Serial.println("lampMins = " + String(eepromValues[12]));
+      newCommand = true;
+    }
     else if(inputString == "getTime") {
       //String values1 = "t=" + String(runTime/1000) +"s, " + String(runTime) + "ms" + ", onT=" + String(onTime()) +"ms" + ", sT=" + String(startTime) + "ms" + ", rT=" + String(relStartTime) + "ms" +", mode=" + String(modeNames[state]) + ", RAM=" + String(freeRam());
       String values1 = "T=" + String(runTime/1000) +"s, " + String(runTime) + "ms, onT=" + String(onTime()) +", LoT=" + String(storeLastOnTime) + ", sT=" + String(startTime) + ", relST=" + String(relStartTime);
       String values2 = ", mode=" + String(modeNames[state]) + ", cool=" + String(coolPinFlag) + ", pUSB=" + String(powerUSBFlag) + ", newP=" + String(newPowerCommand) + ", pPin=" + String(powerPinFlag);
       String values3 = ", lUSB=" + String(lampUSBFlag) + ", newL=" + String(newLampCommand) + ", lPin=" + String(lampPinFlag) + ", beep=" + String(beepFlag) + ", flash=" + String(flashFlag);
       String values4 = ", LogOff=" + String(logOffFlag) + ", beepT=" + String(lastBeepTime) + ", FlashT=" + String(lastFlashTime) + ", zT=" + String(zeroTimer);
-      String values5 = ", newUSB=" + String(newCommand) + ", Ram=" + String(freeRam());
+      String values5 = ", newUSB=" + String(newCommand) + ", Ram=" + String(freeRam()) + ", lampMins =" + String(lampMins);
 
       Serial.print(values1);
       values1 = "";
@@ -158,7 +163,7 @@ void printTime() {
           String values2 = ", mode=" + String(modeNames[state]) + ", cool=" + String(coolPinFlag) + ", pUSB=" + String(powerUSBFlag) + ", newP=" + String(newPowerCommand) + ", pPin=" + String(powerPinFlag);
           String values3 = ", lUSB=" + String(lampUSBFlag) + ", newL=" + String(newLampCommand) + ", lPin=" + String(lampPinFlag) + ", beep=" + String(beepFlag) + ", flash=" + String(flashFlag);
           String values4 = ", LogOff=" + String(logOffFlag) + ", beepT=" + String(lastBeepTime) + ", FlashT=" + String(lastFlashTime) + ", zT=" + String(zeroTimer);
-          String values5 = ", newUSB=" + String(newCommand) + ", Ram=" + String(freeRam());
+          String values5 = ", newUSB=" + String(newCommand) + ", Ram=" + String(freeRam()) + ", lampMins=" + String(lampMins);
 
           Serial.print(values1);
           values1 = "";
@@ -203,6 +208,7 @@ void printCommands() {
   Serial.println(F("  update:          Update all timer, mode and flag values over the USB port, 0=OFF, 1=ON"));
   Serial.println(F("  program:         Has the unit ever been programmed, if the value is not equal to 1, then the default timer values {300, 900, 5400, 15, 300, 1800, 20, 500, 0, 0, 1} will be applied and the unit performs a cpuReset"));
   Serial.println(F("  baseCode:        baseCode used to communicate with matching powerboard, 1..255"));
+  Serial.println(F("  lampMins:        Time in minutes that the lamp has run since installation, 0..2147483 mins"));
   Serial.println(F(""));
   
   Serial.println(F("set = set one of the 'getAll' values  eg: set coolTime=300 or set echo = 0(false) or 1(true), to apply changes you must use the cpuReset command"));

@@ -86,8 +86,11 @@ getAll - get current maximum timer values etc
   update:          Update all timer, mode and flag values over the USB port, 0=OFF, 1=ON
   program:         Has the unit ever been programmed, if the value is not equal to 1, then the default timer values {300, 900, 5400, 15, 300, 1800, 20, 500, 0, 0, 1} will be applied and the unit performs a cpuReset
   baseCode:        baseCode used to communicate with matching powerboard
+  lampTime:        Time in minutes that the lamp has run since last replacement
   
 getTime - get current running timer values and operating mode, eg:  t=-82s, -82486ms, on=217515ms, startT=4343, relT=304343, mode=cool
+
+getLampTime - get the time in minutes that the lamp has run since last replacement
 
 getRam - get currently available RAM amount
 
@@ -172,5 +175,3 @@ Troubleshooting:
 	 
 	You may also need to check that the USB drivers are installed and working correctly.
 */
-
-

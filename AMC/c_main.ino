@@ -102,14 +102,15 @@ void loop() {
       powerPinFlag = false; powerUSBFlag = false; lampUSBFlag = false; beepFlag = false; flashFlag = false;
       if(lampPinFlag == true) { 
         lampPinFlag = false;
+        updateLampMins();
         if(updateFlag == true) Serial.println(F("goto startMode")); 
         state = startMode;
       } else {
           if(updateFlag) Serial.println(F("goto zeroMode"));
           zeroTimer = onTime();
           state = zeroMode;
-        }
-        Ram();
+      }
+      Ram();
       break; 
   }
   PinControl();  //Toggle Pins for LEDs and Relay as flagged above

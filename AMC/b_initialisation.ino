@@ -2,9 +2,9 @@
 #include <avr/eeprom.h>  //read/write to internal EEPROM chip
 
 //adjust these values for each unit
-String softVer = "AMC_1/11/19";  //Software version 
-String serialNumber = "005";     //Hardware Serial number
-#define board           4        // 0=Uno, 1=Leonardo1 (S/N 008), 2 = Leonardo2, 3=Beetle, 4=Uno S/N 005
+String softVer = "AMC_17/08/21";  //Software version - Added lampTime
+String serialNumber = "012";     //Hardware Serial number
+#define board           3        // 0=Uno, 1=Leonardo1 (S/N 008), 2 = Leonardo2, 3=Beetle, 4=Uno S/N 005
 
 //Declare LED and Relay PINS
 #if board == 0  //Uno
@@ -79,6 +79,11 @@ int beepLength = 100;  //length of the beep in milliseconds
 int flashLength = 100;  //length of the coolLED flash in milliseconds
 int baseCode ;  //default baseCode for powerboard
 
+long lampStartTime = 0;  
+long lampMins = 0;  //the time in minutes that the lamp has run since the last replacement
+long lampSecs = 0;
+long lastDeltaLampTime = 0;
+
 //initialise flags
 boolean stringComplete = false;  // flag to indicate if the USB read string is complete
 boolean logOffFlag = false;  //flag to indicate if lampUSB was set to off when in minRunMode, so go straight to logOffMode when minTime is reached.
@@ -98,6 +103,7 @@ boolean echoFlag = false;  //used for USB comms handshaking of commands
 boolean programFlag = false;  //used to set default timer values if the unit hasnt been programmed before
 boolean resetFlag = false;  //used to reset the unit if called during initialisation
 boolean ramFlag = false;  //used to return the current free memory available
+boolean lastLampPinFlag = false;  //used to mark last state of the lamp for use in counting lamp minutes accrued
 
 //initialise timers
 long lastFlashTime = 0, lastBeepTime = 0;  //initialise the timers used to record the last beep/flashes
@@ -110,7 +116,7 @@ String inputString = "";  // initialise string to store serial data in.
 int wdtFlag = 1; // initialise flag for watchdog 
 
 //timers and flag names and their corresponding values in an array for reading writing to eeprom
-long eepromValues[] = {coolTime, minTime, maxTime, beepTime, offTime, resetTime, beepLength, flashLength, echoFlag, updateFlag, programFlag, baseCode};
-String eepromNames[] = {"coolTime", "minTime", "maxTime", "beepTime", "offTime", "resetTime", "beepLength", "flashLength", "echo", "update", "program", "baseCode"};
+long eepromValues[] = {coolTime, minTime, maxTime, beepTime, offTime, resetTime, beepLength, flashLength, echoFlag, updateFlag, programFlag, baseCode, lampMins};
+String eepromNames[] = {"coolTime", "minTime", "maxTime", "beepTime", "offTime", "resetTime", "beepLength", "flashLength", "echo", "update", "program", "baseCode", "lampMins"};
 
 int printIndex = 1;  //initialise index used for printing out timer values once per second

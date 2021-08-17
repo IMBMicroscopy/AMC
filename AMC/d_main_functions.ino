@@ -33,7 +33,9 @@ void mainStuff() {
   readUSB();  //read USB port
   setFlags();  //toggle flags on/off after reading commands sent over USB port
   runTime = time() - relStartTime;  //calculate the relative runTime
-  printTime();  //print out the relative runTime
+  onTime(); 
+  lampCounter();
+  printTime();  //print out the timers and flags if updateOn is true
   Ram();
 }
 
@@ -159,6 +161,7 @@ void equaliseFlags() {  //set Pin Flags to equal USB flags
 // watchdog timer reset the cpu if the software locks up
 void cpuReset() {
   //transmitSignal(remote.allOff);
+  updateLampMins();  //update lampMins on eeprom
   Serial.println(F("System is about to Reset, restart your terminal"));
   delay(1000);  
   cli();               //disable interupts
@@ -229,4 +232,34 @@ void Ram() {
     delay(1000);
     cpuReset();
   }
+}
+
+//count total time the lamp is running
+void lampCounter() {
+  if((lampPinFlag == true) && (lastLampPinFlag == false)) { //if the lamp is on, but was off previously
+    lastLampPinFlag = true;
+  }
+  if((lampPinFlag == false) && (lastLampPinFlag == true)){ //if the lamp is off, but was on previously
+    lastLampPinFlag = false;
+  }
+
+  if((lampPinFlag == true) && (lastLampPinFlag == true)) {
+    if(millis() >= (lastDeltaLampTime + 1000)){
+      lampSecs += 1;
+      if(lampSecs % 60 == 0){
+        lampMins += 1;
+      }
+      lastDeltaLampTime = millis();
+    }
+  }  
+}
+
+void updateLampMins() {
+  char strConvert[10];
+  String lampMinsString = String(lampMins);
+  lampMinsString.toCharArray(strConvert,10);  // convert the number in the incoming USB string to a character array
+  eepromValues[12] = atol(strConvert);  //convert the character array to a LONG integer and put it into the correct variable in eepromValues
+  eepromValues[12] = constrain(eepromValues[12], 0, 2147483);
+  eeprom_update_block((void*)&eepromValues[12], (void*)(12*4), sizeof(eepromValues[12]));  //write the value to the eeprom in the correct spot for that variable.
+  delay(10);  //wait for the eeprom to write
 }
