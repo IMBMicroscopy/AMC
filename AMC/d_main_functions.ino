@@ -35,6 +35,7 @@ void mainStuff() {
   runTime = time() - relStartTime;  //calculate the relative runTime
   onTime(); 
   lampCounter();
+  if(lampMins % 60 == 0) {updateLampMins();}  //write lampMins to eeprom every hour of use
   printTime();  //print out the timers and flags if updateOn is true
   Ram();
 }
@@ -255,11 +256,19 @@ void lampCounter() {
 }
 
 void updateLampMins() {
-  char strConvert[10];
-  String lampMinsString = String(lampMins);
-  lampMinsString.toCharArray(strConvert,10);  // convert the number in the incoming USB string to a character array
-  eepromValues[12] = atol(strConvert);  //convert the character array to a LONG integer and put it into the correct variable in eepromValues
-  eepromValues[12] = constrain(eepromValues[12], 0, 2147483);
-  eeprom_update_block((void*)&eepromValues[12], (void*)(12*4), sizeof(eepromValues[12]));  //write the value to the eeprom in the correct spot for that variable.
-  delay(10);  //wait for the eeprom to write
+  long oldLampMins = 0;
+  eeprom_read_block((void*)&oldLampMins, (void*)48, sizeof(oldLampMins));
+  Serial.println("oldLampMins=" + String(oldLampMins));
+  Serial.println("lampMins=" + String(lampMins));
+  Serial.println("old=new: " + String(oldLampMins == lampMins));
+  if(oldLampMins != lampMins){
+    Serial.println("write lampMins to eeprom");
+    char strConvert[10];
+    String lampMinsString = String(lampMins);
+    lampMinsString.toCharArray(strConvert,10);  // convert the number in the incoming USB string to a character array
+    eepromValues[12] = atol(strConvert);  //convert the character array to a LONG integer and put it into the correct variable in eepromValues
+    eepromValues[12] = constrain(eepromValues[12], 0, 2147483);
+    eeprom_update_block((void*)&eepromValues[12], (void*)(12*4), sizeof(eepromValues[12]));  //write the value to the eeprom in the correct spot for that variable.
+    delay(10);  //wait for the eeprom to write
+  }
 }

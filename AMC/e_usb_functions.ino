@@ -105,8 +105,7 @@ void setFlags(){
       delay(1);
     }
     else if(inputString == ("getLampMins")) {
-      readEEPROM();
-      Serial.println("lampMins = " + String(eepromValues[12]));
+      Serial.println("lampMins = " + String(lampMins));
       newCommand = true;
     }
     else if(inputString == "getTime") {

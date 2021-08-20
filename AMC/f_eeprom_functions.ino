@@ -5,8 +5,9 @@ void readEEPROM() {
     j=j+4;
     delay(10);  //wait for the eeprom to read
   }
-  coolTime = constrain(eepromValues[0], 0, 3600); minTime = constrain(eepromValues[1], 0, 7200); maxTime = constrain(eepromValues[2], 0, 2000000);  //update all of the variables with values from the eeprom
-  beepTime = constrain(eepromValues[3], 0, 1800); offTime = constrain(eepromValues[4], 0, 1800); resetTime = constrain(eepromValues[5], 30, 86400);
+  coolTime = constrain(eepromValues[0], 0, 3600); minTime = constrain(eepromValues[1], 0, 7200); maxTime = constrain(eepromValues[2], 0, 2147483);  //update all of the variables with values from the eeprom
+  beepTime = constrain(eepromValues[3], 0, 1800); offTime = constrain(eepromValues[4], 0, 1800); 
+  resetTime = constrain(eepromValues[5], 30, 2147483);
   beepLength = constrain(eepromValues[6], 0, 1000); flashLength = constrain(eepromValues[7], 0, 1000); echoFlag = constrain(eepromValues[8], false, true); 
   updateFlag = constrain(eepromValues[9], false, true); programFlag = constrain(eepromValues[10], false, true); baseCode = constrain(eepromValues[11],1,50); lampMins = constrain(eepromValues[12],0,2147483);
   eeprom_read_block((void*)&wdtFlag, (void*)60, sizeof(wdtFlag));
@@ -29,10 +30,10 @@ void printEEPROM() {
     long a = 0; long b = 0; String c ="";
     if(i == 0) {a = 0; b = 3600; c = "s";}
     if(i == 1) {a = 1; b = 7200; c = "s";}
-    if(i == 2) {a = 1; b = 2000000; c = "s";}
+    if(i == 2) {a = 1; b = 2147483; c = "s";}
     if(i == 3) {a = 0; b = 1800; c = "s";}
     if(i == 4) {a = 0; b = 1800; c = "s";}
-    if(i == 5) {a = 30; b = 86400; c = "s";}
+    if(i == 5) {a = 30; b = 2147483; c = "s";}
     if(i == 6 || i == 7) {a = 0; b = 1000; c = "ms";}
     if(i == 8 || i == 9 || i == 10) {a = 0; b = 1; c = "";}
     if(i == 11) {a = 1; b = 255; c = "";}
@@ -59,10 +60,10 @@ long writeEEPROM() {
   }
   if(index2 == 0) {a = 0; b = 3600;}
   if(index2 == 1) {a = 0; b = 7200;}
-  if(index2 == 2) {a = 0; b = 2000000;}
+  if(index2 == 2) {a = 0; b = 2147483;}
   if(index2 == 3) {a = 0; b = 1800;}
   if(index2 == 4) {a = 0; b = 1800;}
-  if(index2 == 5) {a = 30; b = 86400;}
+  if(index2 == 5) {a = 30; b = 2147483;}
   if(index2 == 6 || index2 == 7) {a = 0; b = 1000;}
   if(index2 == 8 || index2 == 9 || index2 == 10) {a = 0; b = 1;}
   if(index2 == 11) {a = 1; b = 255;}

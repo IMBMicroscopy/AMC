@@ -102,7 +102,7 @@ void loop() {
       powerPinFlag = false; powerUSBFlag = false; lampUSBFlag = false; beepFlag = false; flashFlag = false;
       if(lampPinFlag == true) { 
         lampPinFlag = false;
-        updateLampMins();
+        updateLampMins();  //update lampMins to eeprom when lamp turns off
         if(updateFlag == true) Serial.println(F("goto startMode")); 
         state = startMode;
       } else {
