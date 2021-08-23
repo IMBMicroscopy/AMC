@@ -83,6 +83,7 @@ long lampStartTime = 0;
 long lampMins = 0;  //the time in minutes that the lamp has run since the last replacement
 long lampSecs = 0;
 long lastDeltaLampTime = 0;
+long oldLampMins = lampMins; 
 
 //initialise flags
 boolean stringComplete = false;  // flag to indicate if the USB read string is complete
@@ -104,6 +105,8 @@ boolean programFlag = false;  //used to set default timer values if the unit has
 boolean resetFlag = false;  //used to reset the unit if called during initialisation
 boolean ramFlag = false;  //used to return the current free memory available
 boolean lastLampPinFlag = false;  //used to mark last state of the lamp for use in counting lamp minutes accrued
+boolean oldUpdateFlag = updateFlag; //used to compare old and new values 
+
 
 //initialise timers
 long lastFlashTime = 0, lastBeepTime = 0;  //initialise the timers used to record the last beep/flashes

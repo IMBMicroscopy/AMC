@@ -79,7 +79,7 @@ void setFlags(){
     else if(inputString == "getAll") {
       Serial.println(F("To apply changes you must use the 'set' command followed by the 'cpuReset' command"));
       Serial.println(F(""));
-      boolean oldUpdateFlag = updateFlag; long oldLampMins = lampMins; 
+      oldUpdateFlag = updateFlag; oldLampMins = lampMins; 
       readEEPROM();
       initTimers();
       printEEPROM(); 

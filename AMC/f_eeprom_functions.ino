@@ -73,10 +73,11 @@ long writeEEPROM() {
   eepromValues[index2] = constrain(eepromValues[index2], a, b);
   eeprom_update_block((void*)&eepromValues[index2], (void*)(index2*4), sizeof(eepromValues[index2]));  //write the value to the eeprom in the correct spot for that variable.
   Serial.println(String(keyword) + " = " + String(eepromValues[index2]));
-  boolean oldUpdateFlag = updateFlag; long oldLampMins = lampMins; 
+  oldUpdateFlag = updateFlag; oldLampMins = lampMins;
   readEEPROM();
   initTimers();
-  updateFlag = oldUpdateFlag; lampMins = oldLampMins;
+  updateFlag = oldUpdateFlag;
+  if(keyword != lampMins) {oldLampMins = lampMins;}  //if keyword is lampMins, then update the active lampMins value
   delay(10);  //wait for the eeprom to write
   Serial.println(F(""));
 }
