@@ -8,6 +8,7 @@ void setup() {
   delay(1000);
   readEEPROM();  //read any stored timer values in the EEPROM chip
   initTimers(); //set current timer values
+  relStartTime = startTime = millis();  //initialise the resettable current time
   wdt_enable(WDTO_8S);  //set watchdog reset timeout period to 2secs
   delay(500);
 }

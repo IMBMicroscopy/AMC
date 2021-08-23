@@ -22,7 +22,7 @@ void initTimers() {
   beepTime = (beepTime * 1000) + maxTime;  // the time the beeper will beep for to warn the user to double click the icon on the desktop (1 second beeps with 1 second interval)
   offTime = (offTime * 1000) + beepTime;  // the time to allow a user to continue using the scope before going into cooling mode (cooling light flashes)
   resetTime = resetTime * 1000;  //time to reset the device if it's not being used
-  relStartTime = startTime = millis();  //initialise the resettable current time
+//  relStartTime = startTime = millis();  //initialise the resettable current time
 }
 
 void mainStuff() {
@@ -258,11 +258,7 @@ void lampCounter() {
 void updateLampMins() {
   long oldLampMins = 0;
   eeprom_read_block((void*)&oldLampMins, (void*)48, sizeof(oldLampMins));
-  Serial.println("oldLampMins=" + String(oldLampMins));
-  Serial.println("lampMins=" + String(lampMins));
-  Serial.println("old=new: " + String(oldLampMins == lampMins));
   if(oldLampMins != lampMins){
-    Serial.println("write lampMins to eeprom");
     char strConvert[10];
     String lampMinsString = String(lampMins);
     lampMinsString.toCharArray(strConvert,10);  // convert the number in the incoming USB string to a character array

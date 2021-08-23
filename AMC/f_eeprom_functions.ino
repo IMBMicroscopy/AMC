@@ -15,7 +15,7 @@ void readEEPROM() {
 
 // set default values in new arduino board if the program flag != 1  
  if(eepromValues[10] != 1) {  
-   long eepromDefaults[] = {300, 900, 5400, 15, 300, 1800, 20, 500, 0, 0, 1, 1,0};
+   long eepromDefaults[] = {300, 900, 5400, 15, 300, 86400, 20, 500, 0, 0, 1, 1,0};
    for(int i=0; i<=12; i++) { 
      eepromValues[i] = eepromDefaults[i];
      eeprom_update_block((void*)&eepromValues[i], (void*)(i*4), sizeof(eepromValues[i]));  //write the value to the eeprom in the correct spot for that variable.
@@ -73,6 +73,10 @@ long writeEEPROM() {
   eepromValues[index2] = constrain(eepromValues[index2], a, b);
   eeprom_update_block((void*)&eepromValues[index2], (void*)(index2*4), sizeof(eepromValues[index2]));  //write the value to the eeprom in the correct spot for that variable.
   Serial.println(String(keyword) + " = " + String(eepromValues[index2]));
+  boolean oldUpdateFlag = updateFlag; long oldLampMins = lampMins; 
+  readEEPROM();
+  initTimers();
+  updateFlag = oldUpdateFlag; lampMins = oldLampMins;
   delay(10);  //wait for the eeprom to write
   Serial.println(F(""));
 }

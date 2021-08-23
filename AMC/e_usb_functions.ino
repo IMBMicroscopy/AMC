@@ -79,7 +79,11 @@ void setFlags(){
     else if(inputString == "getAll") {
       Serial.println(F("To apply changes you must use the 'set' command followed by the 'cpuReset' command"));
       Serial.println(F(""));
+      boolean oldUpdateFlag = updateFlag; long oldLampMins = lampMins; 
+      readEEPROM();
+      initTimers();
       printEEPROM(); 
+      updateFlag = oldUpdateFlag; lampMins = oldLampMins;
       newCommand = true;
     }
     else if(inputString == "beepOn") {
@@ -105,7 +109,7 @@ void setFlags(){
       delay(1);
     }
     else if(inputString == ("getLampMins")) {
-      Serial.println("lampMins = " + String(lampMins));
+      Serial.println("lampMins=" + String(lampMins));
       newCommand = true;
     }
     else if(inputString == "getTime") {
@@ -114,7 +118,7 @@ void setFlags(){
       String values2 = ", mode=" + String(modeNames[state]) + ", cool=" + String(coolPinFlag) + ", pUSB=" + String(powerUSBFlag) + ", newP=" + String(newPowerCommand) + ", pPin=" + String(powerPinFlag);
       String values3 = ", lUSB=" + String(lampUSBFlag) + ", newL=" + String(newLampCommand) + ", lPin=" + String(lampPinFlag) + ", beep=" + String(beepFlag) + ", flash=" + String(flashFlag);
       String values4 = ", LogOff=" + String(logOffFlag) + ", beepT=" + String(lastBeepTime) + ", FlashT=" + String(lastFlashTime) + ", zT=" + String(zeroTimer);
-      String values5 = ", newUSB=" + String(newCommand) + ", Ram=" + String(freeRam()) + ", lampMins =" + String(lampMins);
+      String values5 = ", newUSB=" + String(newCommand) + ", Ram=" + String(freeRam()) + ", lampMins=" + String(lampMins);
 
       Serial.print(values1);
       values1 = "";

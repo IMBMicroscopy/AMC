@@ -74,7 +74,7 @@ long minTime = 1800;  // the mininum time the lamp may run for once it's turned 
 long maxTime = 3600;   // the maximum time that the power or lamp will run after minTime completes before the unit starts beeping to prompt user intervention 
 long beepTime = 10;  // the time the beeper will beep for to warn the user to double click the icon on the desktop (1 second beeps with 1 second interval)
 long offTime = 110;  // the time to allow a user to continue using the scope before going into cooling mode (cooling light flashes)
-long resetTime = 1800;  //time to reset the device if it's not being used
+long resetTime = 86400;  //time to reset the device if it's not being used
 int beepLength = 100;  //length of the beep in milliseconds
 int flashLength = 100;  //length of the coolLED flash in milliseconds
 int baseCode ;  //default baseCode for powerboard
