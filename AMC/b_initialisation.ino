@@ -3,8 +3,8 @@
 
 //adjust these values for each unit
 String softVer = "AMC_17/08/21";  //Software version - Added lampTime
-String serialNumber = "012";     //Hardware Serial number
-#define board           3        // 0=Uno, 1=Leonardo1 (S/N 008), 2 = Leonardo2, 3=Beetle, 4=Uno S/N 005
+String serialNumber = "007";     //Hardware Serial number
+#define board           1        // 0=Uno, 1=Leonardo1 (S/N 007,008), 2 = Leonardo2, 3=Beetle, 4=Uno (S/N 005)
 
 //Declare LED and Relay PINS
 #if board == 0  //Uno
