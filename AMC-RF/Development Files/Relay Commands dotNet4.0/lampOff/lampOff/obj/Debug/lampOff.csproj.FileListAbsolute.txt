@@ -1,0 +1,6 @@
+c:\users\j.springfield\documents\visual studio 2012\Projects\lampOff\lampOff\bin\Debug\lampOff.exe.config
+c:\users\j.springfield\documents\visual studio 2012\Projects\lampOff\lampOff\bin\Debug\lampOff.exe
+c:\users\j.springfield\documents\visual studio 2012\Projects\lampOff\lampOff\bin\Debug\lampOff.pdb
+c:\users\j.springfield\documents\visual studio 2012\Projects\lampOff\lampOff\obj\Debug\lampOff.exe
+c:\users\j.springfield\documents\visual studio 2012\Projects\lampOff\lampOff\obj\Debug\lampOff.pdb
+C:\Users\j.springfield\documents\visual studio 2012\Projects\lampOff\lampOff\obj\Debug\lampOff.csprojResolveAssemblyReference.cache

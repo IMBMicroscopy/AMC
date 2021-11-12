@@ -1,0 +1,22 @@
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\bin\Release\allOff.exe.config
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\bin\Release\allOff.exe.manifest
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\bin\Release\allOff.application
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\bin\Release\allOff.exe
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\bin\Release\allOff.pdb
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\obj\Release\allOff.csprojResolveAssemblyReference.cache
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\obj\Release\allOff.TrustInfo.xml
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\obj\Release\allOff.exe.manifest
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\obj\Release\allOff.application
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\obj\Release\allOff.exe
+Z:\Dropbox\Scope Relay v2\Relay Commands\allOff\allOff\obj\Release\allOff.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\bin\Release\allOff.exe.config
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\bin\Release\allOff.exe.manifest
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\bin\Release\allOff.application
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\bin\Release\allOff.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\bin\Release\allOff.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\obj\Release\allOff.csprojResolveAssemblyReference.cache
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\obj\Release\allOff.TrustInfo.xml
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\obj\Release\allOff.exe.manifest
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\obj\Release\allOff.application
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\obj\Release\allOff.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\allOff\allOff\obj\Release\allOff.pdb

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="scopeOn.exe" version="1.0.0.0" publicKeyToken="d6d5049ba0090046" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="scopeOn.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="scopeOn" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="scopeOn.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="scopeOn.exe" size="24064">
+      <assemblyIdentity name="scopeOn" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Gk8YSn2t7cxFYTvWyAOhuIiUQVZ3YcbInXhX1soMYXk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="scopeOn.exe.config" size="187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="scopeOn.ico" size="17542">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>aP2uLAIr+G9Tudv0tDowDWU/0XB8F3Pxm2lfC4yskjU=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=JAMESSPRING9530\j.springfield" issuerKeyHash="7aeef2371a254427dd9fc93deed1f8a7f44c238c" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>3txeGjNYOJd4j/bFPFo/oJ8dcNLCya2r/yg31S0YcFs=</DigestValue></Reference></SignedInfo><SignatureValue>r9LZvFkO6r9YOsynfU+xkkVtSBNuT8lR1iC7+4r/diozyU2EBGQsvLjyRyLU2oMcEtp+fmMRL8e2l9mHc/QrANBUA48QOJMyk+dE+8KbPVOn/4lYXEMjeZLoHB7PWVZhjWcrY6dSbGbcMypNiCaiEhqdCeZGOzHXaMT8E0MsTAk=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>xD8BNweTo5cx8xjt/2CB0o7YlefrKc2WqlhH6IcS/W1DRSUuC9eUoC8MjLTTarEopOjG/py2ZbalxW66str3f5ESJuKrq0/HS2Ok1Av5L6+Uw+MEzuhes8RAZ5HuEtiHGS6EX0jN2Oh6q8FtVYhtG2zpzADO+7RKhkDUoncp8eM=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="5b70182dd53728ffabadc9c2d2701d9fa03f5a3cc5f68f78973858331a5edcde" Description="" Url=""><as:assemblyIdentity name="scopeOn.exe" version="1.0.0.0" publicKeyToken="d6d5049ba0090046" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=JAMESSPRING9530\j.springfield</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>GXeVJvTVw6uupRlUk0nMU1NVggPVr6ji0AiFrpLShBo=</DigestValue></Reference></SignedInfo><SignatureValue>q8O/IfjIgR5deQn2ZKOFYOHrGv1gpruzRrMBpBLizDas4WW0P6NrYIfLRZI776aewCs3SU3xZGF7A9991mXASMjbAjsBAgHFUN101VVarzz52AN+HeEgR9OPNZSPy4W5Mmqq7jdAUfvg1oqjSJmSfNgSXBc7ZN3TA9vOWM0PiUI=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>xD8BNweTo5cx8xjt/2CB0o7YlefrKc2WqlhH6IcS/W1DRSUuC9eUoC8MjLTTarEopOjG/py2ZbalxW66str3f5ESJuKrq0/HS2Ok1Av5L6+Uw+MEzuhes8RAZ5HuEtiHGS6EX0jN2Oh6q8FtVYhtG2zpzADO+7RKhkDUoncp8eM=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIICDTCCAXagAwIBAgIQaBftCzKdvZVN3ygCkwjtkDANBgkqhkiG9w0BAQsFADBFMUMwQQYDVQQDHjoASgBBAE0ARQBTAFMAUABSAEkATgBHADkANQAzADAAXABqAC4AcwBwAHIAaQBuAGcAZgBpAGUAbABkMB4XDTE2MDIwODA2MzM1NloXDTE3MDIwNzEyMzM1NlowRTFDMEEGA1UEAx46AEoAQQBNAEUAUwBTAFAAUgBJAE4ARwA5ADUAMwAwAFwAagAuAHMAcAByAGkAbgBnAGYAaQBlAGwAZDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAxD8BNweTo5cx8xjt/2CB0o7YlefrKc2WqlhH6IcS/W1DRSUuC9eUoC8MjLTTarEopOjG/py2ZbalxW66str3f5ESJuKrq0/HS2Ok1Av5L6+Uw+MEzuhes8RAZ5HuEtiHGS6EX0jN2Oh6q8FtVYhtG2zpzADO+7RKhkDUoncp8eMCAwEAATANBgkqhkiG9w0BAQsFAAOBgQCWzyYewqw9IdtI2h+HauaDpv3LncuIIizEWZ7toB9x1RxKFdTFhiflCrkifRMSF3xcrU+vm2rkHl2CVoBrAUg2s+f12yIjggD539eVd34RcoCpDKBcnReCMh6b/VtNgnzbIkjv56rCaDgVa9Bz4STckpqHsGlS2yV7ERCo0fjcMA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

@@ -1,0 +1,5 @@
+c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOff\scopeOff\bin\Debug\scopeOff.exe.config
+c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOff\scopeOff\bin\Debug\scopeOff.exe
+c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOff\scopeOff\bin\Debug\scopeOff.pdb
+c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOff\scopeOff\obj\Debug\scopeOff.exe
+c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOff\scopeOff\obj\Debug\scopeOff.pdb

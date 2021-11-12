@@ -1,0 +1,13 @@
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\bin\Debug\scopeOn.exe.config
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\bin\Debug\scopeOn.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\bin\Debug\scopeOn.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\obj\Debug\scopeOn.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\obj\Debug\scopeOn.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\obj\Debug\scopeOn.csprojResolveAssemblyReference.cache
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\bin\Debug\scopeOn.exe.manifest
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\bin\Debug\scopeOn.application
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\obj\Debug\scopeOn.exe.manifest
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOn\scopeOn\obj\Debug\scopeOn.application
+\\Mac\Dropbox\Scope Relays\Scope Relay RF\Latest release Version\Development Files\Relay Commands dotNet4.5\scopeOn\scopeOn\bin\Debug\scopeOn.exe.config
+\\Mac\Dropbox\Scope Relays\Scope Relay RF\Latest release Version\Development Files\Relay Commands dotNet4.5\scopeOn\scopeOn\obj\Debug\scopeOn.exe
+\\Mac\Dropbox\Scope Relays\Scope Relay RF\Latest release Version\Development Files\Relay Commands dotNet4.5\scopeOn\scopeOn\obj\Debug\scopeOn.pdb

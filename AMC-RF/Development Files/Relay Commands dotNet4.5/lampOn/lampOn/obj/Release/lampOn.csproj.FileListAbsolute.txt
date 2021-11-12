@@ -1,0 +1,12 @@
+Z:\Dropbox\Scope Relay v2\Relay Commands\lampOn\lampOn\bin\Release\lampOn.exe.config
+Z:\Dropbox\Scope Relay v2\Relay Commands\lampOn\lampOn\bin\Release\lampOn.exe
+Z:\Dropbox\Scope Relay v2\Relay Commands\lampOn\lampOn\bin\Release\lampOn.pdb
+Z:\Dropbox\Scope Relay v2\Relay Commands\lampOn\lampOn\obj\Release\lampOn.csprojResolveAssemblyReference.cache
+Z:\Dropbox\Scope Relay v2\Relay Commands\lampOn\lampOn\obj\Release\lampOn.exe
+Z:\Dropbox\Scope Relay v2\Relay Commands\lampOn\lampOn\obj\Release\lampOn.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\lampOn\lampOn\bin\Release\lampOn.exe.config
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\lampOn\lampOn\obj\Release\lampOn.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\lampOn\lampOn\obj\Release\lampOn.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\lampOn\lampOn\bin\Release\lampOn.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\lampOn\lampOn\bin\Release\lampOn.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\lampOn\lampOn\obj\Release\lampOn.csprojResolveAssemblyReference.cache

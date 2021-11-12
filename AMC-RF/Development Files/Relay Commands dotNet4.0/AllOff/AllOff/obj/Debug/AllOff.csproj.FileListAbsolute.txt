@@ -1,0 +1,5 @@
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\AllOff\AllOff\bin\Debug\AllOff.exe.config
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\AllOff\AllOff\bin\Debug\AllOff.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\AllOff\AllOff\bin\Debug\AllOff.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\AllOff\AllOff\obj\Debug\AllOff.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\AllOff\AllOff\obj\Debug\AllOff.pdb

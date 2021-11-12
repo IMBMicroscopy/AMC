@@ -1,0 +1,5 @@
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOff\scopeOff\bin\Debug\scopeOff.exe.config
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOff\scopeOff\bin\Debug\scopeOff.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOff\scopeOff\bin\Debug\scopeOff.pdb
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOff\scopeOff\obj\Debug\scopeOff.exe
+C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\scopeOff\scopeOff\obj\Debug\scopeOff.pdb
