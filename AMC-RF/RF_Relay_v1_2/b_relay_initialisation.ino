@@ -1,57 +1,46 @@
 #include <avr/wdt.h>  //watchdog library
 #include <avr/eeprom.h>  //read/write to internal EEPROM chip
 
-//adjust these values for each unit
-String softVer = "AMC_17/08/21";  //Software version - Added lampTime
-String serialNumber = "003";     //Hardware Serial number
-#define board           0        // 0=Uno&Leonardo (S/N 003), 1=Leonardo1 (S/N 007,008), 2 = Leonardo2, 3=Beetle, 4=Uno (S/N 005)
+String softVer = "RF_Relay_v1_2 11/11/21";  //Software version 
+
+//Edit this for each AMC
+String serialNumber = "RFbeta";
+#define board           0        // 0=RFbeta (S/N RFbeta), 1=S/N RF002), 2 = S/N ???
 
 //Declare LED and Relay PINS
-#if board == 0  //Uno
-  const byte lampPin = 7;  // Mercury Lamp Relay Pin
-  const byte powerPin = 8; // Powerboard Relay Pin
-  const byte beepPin = 3; // Alarm on Logoff Pin
-  const byte lampLED = 14; // Mercury Lamp On indicator LED
-  const byte powerLED = 15; // Powerboard On indicator LED
-  const byte coolLED = 16; // Cooling Mode indicator LED 
-  String boardType = "Uno";
+#if board == 0  //RFbeta
+  //Declare LED and Relay PINS for serial number RFbeta
+  const byte RFpin = 5;  //RF daughter board Pin
+  const byte lampPin = 10;  // Mercury Lamp Relay Pin, leonardo = 7
+  const byte powerPin = 8; // Powerboard Relay Pin, Leonardo = 8
+  const byte coolLED = 9; // Cooling Mode indicator LED, Leonardo = 9
+  const byte beepPin = 3; // Alarm on Logoff Pin (10 on leonardo, 3 on uno)
+  const byte powerLED = 11; // Powerboard On indicator LED, Leonardo = 11
+  const byte lampLED = 12; // Mercury Lamp On indicator LED, Leonardo = 12
+  String boardType = "type0 = S/N RFbeta";
   
-#elif board == 1  //Leonardo type 1 
-  const byte lampPin = 7;  // Mercury Lamp Relay Pin
-  const byte powerPin = 8; // Powerboard Relay Pin
-  const byte beepPin = 3; // Alarm on Logoff Pin
-  const byte lampLED = 12; // Mercury Lamp On indicator LED
-  const byte powerLED = 11; // Powerboard On indicator LED
-  const byte coolLED = 9; // Cooling Mode indicator LED   
-  String boardType = "Leonardo type 1";
-  
-  #elif board == 2  //Leonardo type 2
-  const byte lampPin = 7;  // Mercury Lamp Relay Pin
-  const byte powerPin = 8; // Powerboard Relay Pin
-  const byte beepPin = 10; // Alarm on Logoff Pin
-  const byte lampLED = 14; // Mercury Lamp On indicator LED
-  const byte powerLED = 15; // Powerboard On indicator LED
-  const byte coolLED = 16; // Cooling Mode indicator LED   
-  String boardType = "Leonardo type 2";
-  
-#elif board == 3  //Beetle
-  const byte lampPin = 10;  // Mercury Lamp Relay Pin
-  const byte powerPin = 11; // Powerboard Relay Pin
-  const byte beepPin = 9; // Alarm on Logoff Pin
-  const byte lampLED = A0; // Mercury Lamp On indicator LED
-  const byte powerLED = A1; // Powerboard On indicator LED
-  const byte coolLED = A2; // Cooling Mode indicator LED
-  String boardType = "Beetle";
+#elif board == 1  //RF002
+  //Declare LED and Relay PINS for serial number RF0002
+  const byte RFpin = 10;  //RF daughter board Pin
+  const byte lampPin = 7;  // Mercury Lamp Relay Pin, leonardo = 7
+  const byte powerPin = 8; // Powerboard Relay Pin, Leonardo = 8
+  const byte coolLED = 9; // Cooling Mode indicator LED, Leonardo = 9
+  const byte beepPin = 3; // Alarm on Logoff Pin (10 on leonardo, 3 on uno)
+  const byte powerLED = 11; // Powerboard On indicator LED, Leonardo = 11
+  const byte lampLED = 12; // Mercury Lamp On indicator LED, Leonardo = 12
+  String boardType = "type1 = S/N RF002";
 
-#elif board == 4  //Uno S/N 005
-  const byte lampPin = 7;  // Mercury Lamp Relay Pin
-  const byte powerPin = 8; // Powerboard Relay Pin
-  const byte beepPin = 3; // Alarm on Logoff Pin
-  const byte lampLED = 12; // Mercury Lamp On indicator LED
-  const byte powerLED = 11; // Powerboard On indicator LED
-  const byte coolLED = 9; // Cooling Mode indicator LED
-  String boardType = "Uno S/N 005";
-  
+#elif board == 2  //????
+  //Declare LED and Relay PINS for ?????
+  const byte RFpin = 10;  //RF daughter board Pin
+  const byte lampPin = 10;  // Mercury Lamp Relay Pin, leonardo = 7
+  const byte powerPin = 11; // Powerboard Relay Pin, Leonardo = 8
+  const byte coolLED = 16; // Cooling Mode indicator LED, Leonardo = 9
+  const byte beepPin = 9; // Alarm on Logoff Pin (10 on leonardo, 3 on uno)
+  const byte powerLED = 14; // Powerboard On indicator LED, Leonardo = 11
+  const byte lampLED = 15; // Mercury Lamp On indicator LED, Leonardo = 12
+  String boardType = "type2 = S/N ???";
+
 #endif
 
 // define the different operating modes of the relay unit
@@ -74,7 +63,7 @@ long minTime = 1800;  // the mininum time the lamp may run for once it's turned 
 long maxTime = 3600;   // the maximum time that the power or lamp will run after minTime completes before the unit starts beeping to prompt user intervention 
 long beepTime = 10;  // the time the beeper will beep for to warn the user to double click the icon on the desktop (1 second beeps with 1 second interval)
 long offTime = 110;  // the time to allow a user to continue using the scope before going into cooling mode (cooling light flashes)
-long resetTime = 86400;  //time to reset the device if it's not being used
+long resetTime = 1800;  //time to reset the device if it's not being used
 int beepLength = 100;  //length of the beep in milliseconds
 int flashLength = 100;  //length of the coolLED flash in milliseconds
 int baseCode ;  //default baseCode for powerboard
@@ -106,7 +95,6 @@ boolean resetFlag = false;  //used to reset the unit if called during initialisa
 boolean ramFlag = false;  //used to return the current free memory available
 boolean lastLampPinFlag = false;  //used to mark last state of the lamp for use in counting lamp minutes accrued
 boolean oldUpdateFlag = updateFlag; //used to compare old and new values 
-
 
 //initialise timers
 long lastFlashTime = 0, lastBeepTime = 0;  //initialise the timers used to record the last beep/flashes

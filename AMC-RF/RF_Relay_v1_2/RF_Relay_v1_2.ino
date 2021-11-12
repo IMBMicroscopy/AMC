@@ -1,0 +1,183 @@
+/*
+/* This software is for use with an Arduino powered USB Lamp_Relay_Unit device, designed to control access to microscopes via their 240V power.
+There are two(2) IEC power leads and a powerboard hardwired to the relay device.
+One IEC power lead connects to a fluorescent lamp (Hg or similar) this lamp must run for a certain amount of time before being shutdown to prevent lamp damage, 
+and once shutdown, the user must wait (cooling delay is defined in the code) until the lamp is cool, before the lamp can be restarted.
+There is another IEC plug which connects to the microscopes brightfield lamp, and a powerboard for other devices such as cameras and motor drives.
+When the user logs on to the computer a script runs (group policy editor/ log on) and sends the "powerOn" command to turn on power to the brightfield lamp and powerboard,
+runTime starts and the unit will auto-shutdown the brightfield lamp and accessories after a given maxTime is reached, 
+unless the user double clicks the "SCOPE ON" icon on the desktop (which sends another "powerOn" command).
+If the user wants to use the fluorescence lamp, they need to double click the "LAMP ON" icon on the desktop (which sends a "lampOn" command), this resets the runTime to zero.  
+The lamp will go into auto-shutdown if maxRunTime is reached (beeping and flashing of the cooling LED on front panel), 
+unless the user double clicks the "LAMP ON" or "SCOPE ON" icon again to reset the runTime back to minTime so they gain more time to use the scope.
+If the user leaves the computer without logging off, the unit will start beeping after maxTime is reached and the user must double click the "LAMP ON" or "SCOPE ON" icons to continue using the lamp.
+When the user logs off of the computer a script runs and sends an "allOff" command to turn off the lamps etc (if the Hg lamp hasn't been running for long enough it will stay on until minTime is reached)
+, the unit will then go into logoff mode, where the LED's flash and the Hg lamp stays on, allowing another user to avoid the cooling mode required once the Hg lamp shuts off.
+The unit will then go into cooling mode, and prevent the Hg lamp from turning on whilst hot, if another user logs on to the computer, the scope, brightfield lamp and accessories will power-on, 
+and if the "LAMP ON" icon is double clicked, the Hg lamp will start when cooling mode is over.
+
+The unit will regularly reset itself automatically (power cycle the cpu and disconnect/reconnect PC USB comms) if it's not being used for an extended period (resetTime)
+
+default USB baud rate = 9600
+
+two debugging modes are available: 
+- status (send all timer and flag values over USB) 
+- echo(echo commands sent over USB)
+
+If the device locks up, pressing the button on the back of the device will reset it.
+
+serial commands (must end in a carriage return):
+
+ID? - returns "USB_Relay_unit", used by the software to find the correct com port of the USB relay device
+
+powerOn - power the accessories
+
+powerOff - turn off the accessories
+
+lampOn - power the fluorescence lamp
+
+lampOff - turn off the fluorescence lamp, however the lamp will only turn off once minTime is reached
+
+allOff - turn off the accessories instantly, wait until minTime is reached then enter beeping mode, then enter cooldown mode (~5 mins) then shutdown the lamp
+
+updateOn - turn on status mode 
+  T:               runTime = current operating time, runtime ranges from -coolTime to logOffTime, runTime = 0 means the power and lamp are off.
+  onT:             onTime = time since power cycling or resetting the device
+  LoT:             lastOnTime = last time that the serial port updated the time values
+  sT:              startTime = time when the main loop of code began
+  relST:           relativeStartTime = reference time which is reset each time the unit goes back to offMode, used to calculate runTime
+  mode:            current operating mode of the device (startup, cooling, zeroTime, minRun, maxRun, logOff, off)
+  cool:            coolPin = is the cooling LED on/off
+  pUSB:            powerUSBFlag = USB command to turn on the power T/F
+  newP:            newPowerFlag = is the current power USB command new T/F
+  pPin:            powerPinFlag = is the power ON T/F
+  lUSB:            lampUSBFLag = USB command to turn on the lamp T/F
+  newL:            newLampFlag = is the current lamp USB command new T/F
+  lPin:            lampPinFlag = is the lamp ON T/F
+  beep:            beepFlag = is the piezo set to beep T/F
+  flash:           flashFlag = is the cooling LED set to flash T/F
+  LogOff:          logOffFlag = is the lamp set to go straight from minRunMode to logOffMode T/F
+  BeepT:           lastBeepTime = value of timer used to determine if a beep is required (value in msec)
+  FlashT:          lastFlashTime = value of timers used to determine if a flash is required (value in msec)
+  zT:              zeroTimer = time when unit went into zeroMode and used to determine is a reset is required (value in msec)
+  newUSB:          newCommand = has a new command been sent over USB T/F
+  Ram:             how much Ram is left
+
+  
+updateOff - turn off status mode
+
+cpuReset - resets the hardware for a full restart and allies any timer changes etc
+
+restart - send unit into startup mode, but doesnt perform a hardware reset
+
+getAll - get current maximum timer values etc
+  the value range of each of these timers is 0 - 2,147,483 seconds or ~24 days.  However, (minTime + maxTime + beepTime + offTime <= 2147483 seconds)
+  coolTime:        Time in seconds the hot lamp is in cooling mode, preventing lamp start (accessories may be turned on/off) (cooling LED is on)
+  minTime:         Time in seconds the lamp may run for once it's turned on.
+  maxTime:         Time in seconds that the accessories or lamp will run for before the unit starts beeping to prompt user intervention (maxTime + minTime = total possible runtime)
+  beepTime:        Time in seconds the piezo will beep to warn the user to click the icon on the desktop
+  offTime:         Time in seconds the cooling LED will flash to warn the user to click the icon on the desktop otherwise it will enter cooling mode
+  resetTime:       Time in seconds before the device will reset if it's not being used
+
+  beepLength:      Time in milliseconds that the piezo beeps for each second ( used to control volume, try 20msec)
+  flashLength:     Time in milliseconds that the cooling LED flashes for each second (try 500msec)
+  
+  echo:            Echo USB commands, 0=OFF, 1=ON
+  update:          Update all timer, mode and flag values over the USB port, 0=OFF, 1=ON
+  program:         Has the unit ever been programmed, if the value is not equal to 1, then the default timer values {300, 900, 5400, 15, 300, 1800, 20, 500, 0, 0, 1} will be applied and the unit performs a cpuReset
+  baseCode:        baseCode used to communicate with matching powerboard
+  lampTime:        Time in minutes that the lamp has run since last replacement
+  
+getTime - get current running timer values and operating mode, eg:  t=-82s, -82486ms, on=217515ms, startT=4343, relT=304343, mode=cool
+
+getLampTime - get the time in minutes that the lamp has run since last replacement
+
+getRam - get currently available RAM amount
+
+getVer - get the installed software version
+
+getSer = get Serial Number of hardware
+
+
+set -  set "coolTime, minTime, maxTime, beepTime, offTime, resetTime, beepLength, flashLength, baud, echo, update, program, baseCode"  eg: set coolTime=300 or set echo = 0(false) or 1(true)
+
+beepOn/Off - test the beeper volume.
+
+help - list the serial commands and their meanings
+
+
+
+James Springfield, 12/2/2016
+
+please see the included excel spreadsheet for more information
+
+Installation instructions
+
+	Login as a local administrator on the microscope PC
+	Install Arduino programming language  http://arduino.cc/en/Main/Software
+	Once installed, plug in the arduino device to the PC and Windows will attempt to install drivers for the Arduino Leonardo device, if it's successful great	
+        Otherwise, you will need to go into Device Manager/Ports (Com and LPT) and Right click on the Arduino Leonardo device and update the driver
+        	Select, Yes, but this time only	
+                Browse my Computer for Driver Software -> Let me Pick from a list of device drivers -> Choose Arduino LLC, then on the Right column select Arduino Leonardo (not boot loader)
+		Press Next and finish the installation
+	You may need to restart the computer
+        Go back into Device Manager and make sure the com port for the Arduino Leonardo is set to baud rate = 9600
+		
+
+	You may need to install the latest version of the code to the Scope Relay Unit:
+	
+	open the Arduino programming language and open Scope_relay_v2.ino
+        Select Tools menu/Board/Arduino Leonardo
+        Select Tools menu/Port/(and the arduino leonardo device or a tty.usb.modem)
+	Press the button on the back of the relay unit then press the upload button in the Arduino software to upload the code via usb cable.  (talk to john srnka in the workshop if you have trouble)
+        Wait until the cooling light turns on
+
+	Now press the looking glass "Serial Monitor" button to bring up a communications terminal with the relay unit (set baud rate = 9600, Carriage Return)
+		Type "getAll" to get a list of the current timer values on the device
+		Adjust these values by typing e.g.: "set coolTime = 300" which sets the time the lamp stays in cooling mode to 300 seconds
+		Make sure the "resetTime" is reasonably large, say 1800 seconds, this is how often the unit will reset itself if it's not being used, if you dont do this quickly comms will be lost
+		Go through and set all the values as required.
+		Type "getAll" to check they're all correct
+		Type "cpuReset" to reset the device and upload the new values"
+		Quit the Arduino software
+
+	Copy the "Relay Commands" folder which contains executables, Lamp On, Lamp Off, Power On, Power Off, All Off and relay_message.js  file to the microscope PC, typically in a folder within C:/Windows
+	
+        install the WIC (windows imaging component) program from the microsoft website, or from the Relay_v2 folder
+	install the .net version 4.0 client framework either by downloading from the microsoft website, or from the Relay_v2 folder
+
+	Restart the PC
+	
+	Goto Start Menu, select Run (or command prompt on older OS's), type gpedit.msc to open the group policy editor
+	Find the group policy for Logon, (user configuration/windows settings) and create a new policy to run the "Power On" executable and another for the "relay_message.js" script at logon,
+        Create a policy for Logoff for the "All Off" executable.
+	Copy the shortcut to the Lamp On  executable on to the desktop for All Users, and link it to the Lamp On executable, via it's properties tab, 
+        you'll need to change the "Target" and "Start in" paths to the location of "Lamp on" i.e.: something like:  "c:\Windows\Relay_executable\Lamp_On.exe", do the same for the Lamp Off and Power On
+
+	Edit the wording in the relay_message.js script if required to match the timer values etc
+
+	Right Click on the c:/Windows/relay_commands folder and select properties, goto security, and make sure that local Users (i.e.: lab-Fluoro1 not IMBPC.AD) have permissions to run the files within the folder, 
+        ask IT for help if your not sure, you don't need IT passwords, but it's a bit fiddly (ask Calvin Evans for help).
+
+	Log out of the computer, and login as a regular IMBPC or AD user and check it all works.
+
+Troubleshooting:
+
+	Step 1:   Press the reset button on the back of the device, wait 10 seconds then try turning on the power etc
+
+	Step 2:	Shutdown the PC then turn off the power at the Wall to the PC, wait atleast 60 seconds(to reset the USB ports), Startup the PC and login, hopefully that will fix the problem.
+
+	Step 3: If that didnt fix it, use HyperTerminal to connect to the Arduino device (check device manager for the correct com port, use 9600 baud), use the serial commands above to see if the usb relay device is actually working. 
+	If it is then for some reason the small programs that detect the usb relay device and send the different serial commands arent working.  
+	Check to see if the programs are working by manually double clicking on them in the "relay commands" folder probably in the c:/windows directory
+	Source code is in this folder and written using C sharp language. 	
+	If they're not working you may need to re-install .net from the microsoft website
+	 
+	You may also need to check that the USB drivers are installed and working correctly.
+
+  For a new AMC you will need to upload the RF codes to the eeprom
+  you will need to uncomment the following line of code in c_clPwrBoard_codes, upload the code to the AMC
+  then comment out the same line and upload again
+  line 29  //#define UPDATE_EEPROM  //uncoment this to update eeprom data with new key values
+  
+*/
