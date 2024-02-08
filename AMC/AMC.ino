@@ -115,6 +115,9 @@ Installation instructions
 
 	Login as a local administrator on the microscope PC
 	Install Arduino programming language  http://arduino.cc/en/Main/Software
+	You will need to download the correct version of Arduino software with Leonardo drivers that are compatible with your Windows OS.
+    Windows 7 32bit requires arduino 1.0.6 32bit for the correct drivers
+
 	Once installed, plug in the arduino device to the PC and Windows will attempt to install drivers for the Arduino Leonardo device, if it's successful great	
         Otherwise, you will need to go into Device Manager/Ports (Com and LPT) and Right click on the Arduino Leonardo device and update the driver
         	Select, Yes, but this time only	
