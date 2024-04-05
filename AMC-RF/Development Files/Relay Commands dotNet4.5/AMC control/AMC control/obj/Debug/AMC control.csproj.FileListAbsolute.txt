@@ -1,5 +1,0 @@
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\AMC control\AMC control\bin\Debug\AMC control.exe.config
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\AMC control\AMC control\bin\Debug\AMC control.exe
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\AMC control\AMC control\bin\Debug\AMC control.pdb
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\AMC control\AMC control\obj\Debug\AMC control.exe
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\Relay Commands dotNet4.5\AMC control\AMC control\obj\Debug\AMC control.pdb

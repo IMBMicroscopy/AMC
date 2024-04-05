@@ -1,5 +1,0 @@
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\lampOn\lampOn\bin\Debug\lampOn.exe.config
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\lampOn\lampOn\bin\Debug\lampOn.exe
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\lampOn\lampOn\bin\Debug\lampOn.pdb
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\lampOn\lampOn\obj\Debug\lampOn.exe
-C:\Users\j.springfield\Documents\Visual Studio 2012\Projects\lampOn\lampOn\obj\Debug\lampOn.pdb

@@ -1,5 +1,0 @@
-c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOn\scopeOn\bin\Debug\scopeOn.exe.config
-c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOn\scopeOn\bin\Debug\scopeOn.exe
-c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOn\scopeOn\bin\Debug\scopeOn.pdb
-c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOn\scopeOn\obj\Debug\scopeOn.exe
-c:\users\j.springfield\documents\visual studio 2012\Projects\scopeOn\scopeOn\obj\Debug\scopeOn.pdb
