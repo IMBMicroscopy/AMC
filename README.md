@@ -1,4 +1,8 @@
 # AMC
+
+![Image](https://github.com/user-attachments/assets/f5c63dda-5f6b-4691-9cab-23a1c2171b14)
+![Image](https://github.com/user-attachments/assets/5ed629f8-f637-4ea7-890a-e3c3d88864ec)
+
 Arduino code for Automatic Microscope Controller
 
 /* This software is for use with an Arduino powered USB Lamp_Relay_Unit device, designed to control access to microscopes via their 240V power.
