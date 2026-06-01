@@ -3,8 +3,8 @@
 
 //adjust these values for each unit
 String softVer = "AMC_17/08/21";  //Software version - Added lampTime
-String serialNumber = "16";     //Hardware Serial number
-#define board           3        // 0=Uno&Leonardo (), 1=Leonardo1 (S/N 003,007,008), 2 = Leonardo2, 3=Beetle (USB02 versions including S/N 014...), 4=Uno (S/N 005)
+String serialNumber = "2";     //Hardware Serial number
+#define board           3        // 0=Uno&Leonardo (), 1=Leonardo1 (S/N 001,003,007,008), 2 = Leonardo2, 3=Beetle (USB02 versions including S/N 014...), 4=Uno (S/N 005), 5=Leonardo (S/N 002)
 
 //Declare LED and Relay PINS
 #if board == 0  //Uno
@@ -52,6 +52,14 @@ String serialNumber = "16";     //Hardware Serial number
   const byte coolLED = 9; // Cooling Mode indicator LED
   String boardType = "Uno S/N 005";
   
+#elif board == 5  //Uno S/N 002
+  const byte lampPin = 7;  // Mercury Lamp Relay Pin
+  const byte powerPin = 8; // Powerboard Relay Pin
+  const byte beepPin = 10; // Alarm on Logoff Pin
+  const byte lampLED = 12; // Mercury Lamp On indicator LED
+  const byte powerLED = 11; // Powerboard On indicator LED
+  const byte coolLED = 9; // Cooling Mode indicator LED
+  String boardType = "Leonardo S/N 002";  
 #endif
 
 // define the different operating modes of the relay unit
